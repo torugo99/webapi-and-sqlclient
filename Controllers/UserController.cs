@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
+using WebApi.Models.Dtos;
 
 namespace WebApi.Controllers
 {   
@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(User user)
+        public JsonResult Post(UserDto user)
         {
             string query = @"
                            insert into dbo.Users
@@ -34,10 +34,10 @@ namespace WebApi.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {   
-                    myCommand.Parameters.AddWithValue("@user_id", user.UserId = Guid.NewGuid());
-                    myCommand.Parameters.AddWithValue("@name_user", user.Name);
-                    myCommand.Parameters.AddWithValue("@email", user.Email);
-                    myCommand.Parameters.AddWithValue("@created_at", user.CreatedAt = DateTime.Now);
+                    myCommand.Parameters.AddWithValue("@user_id", user.user_id = Guid.NewGuid());
+                    myCommand.Parameters.AddWithValue("@name_user", user.name_user);
+                    myCommand.Parameters.AddWithValue("@email", user.email);
+                    myCommand.Parameters.AddWithValue("@created_at", user.created_at = DateTime.Now);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
@@ -80,7 +80,7 @@ namespace WebApi.Controllers
             return new JsonResult(table);
         }
 
-        [HttpGet("get-by/{user_id}")]
+        [HttpGet("get-by-id/{user_id}")]
         public JsonResult GetById(string user_id)
         {
             string query = @"
@@ -110,7 +110,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{user_id}")]
-        public JsonResult Put(string user_id, User user)
+        public JsonResult Put(string user_id, UserUpdateDto user)
         {
             string query = @"
                            update dbo.Users
@@ -130,9 +130,9 @@ namespace WebApi.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myCommand.Parameters.AddWithValue("@user_id", user_id);
-                    myCommand.Parameters.AddWithValue("@name_user", user.Name);
-                    myCommand.Parameters.AddWithValue("@email", user.Email);
-                    myCommand.Parameters.AddWithValue("@updated_at", user.UpdatedAt = DateTime.Now);
+                    myCommand.Parameters.AddWithValue("@name_user", user.name_user);
+                    myCommand.Parameters.AddWithValue("@email", user.email);
+                    myCommand.Parameters.AddWithValue("@updated_at", user.updated_at = DateTime.Now);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
