@@ -4,6 +4,7 @@ CREATE TABLE users
     name_user VARCHAR (50) NOT NULL,
     email VARCHAR (50) NOT NULL,
     created_at DATETIME,
+    updated_at DATETIME,
 );    
  
 CREATE TABLE clients
