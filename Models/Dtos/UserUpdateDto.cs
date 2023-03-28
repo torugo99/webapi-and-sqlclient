@@ -1,3 +1,5 @@
+#nullable disable warnings
+
 namespace WebApi.Models.Dtos
 {
     public class UserUpdateDto
