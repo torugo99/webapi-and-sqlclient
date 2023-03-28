@@ -24,7 +24,7 @@ namespace WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1.0.0",
-                    Title = "SqlClient.",
+                    Title = "User and Client API.",
                     Description = "Using the SQLClient.",
                     Contact = new OpenApiContact
                     {
