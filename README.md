@@ -52,7 +52,7 @@ Fiz questão de criar um endpoint no ClientController para buscar somente os cli
 ![preview3 img](/docs/img/swagger-03.png)
 
 ### 🌐 | Endpoints:
-Os endpoint esperados estão funcinando perfeitamente.
+Os endpoint esperados estão funcionando perfeitamente.
 
 <details><summary>Endpoints de User</summary>
 <p>
